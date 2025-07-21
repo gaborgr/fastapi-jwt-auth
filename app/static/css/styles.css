@@ -1,0 +1,15 @@
+/* Animaciones */
+.transition-colors {
+    transition: background-color 0.2s ease;
+}
+
+/* Mejoras para tablas */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    position: sticky;
+    top: 0;
+}

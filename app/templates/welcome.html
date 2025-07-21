@@ -3,7 +3,17 @@
 {% block content %}
 <div class="bg-white p-8 rounded-lg shadow-md w-full text-center">
     <h1 class="text-3xl font-bold text-green-600 mb-4">¡Bienvenido, {{ user.email }}!</h1>
+    <p class="mt-2">Tu rol es: <span class="font-semibold">{{ user.role }}</span></p>
     
+    {% if user.role == "admin" %}
+    <div class="mt-6">
+        <a href="/admin/dashboard" 
+           class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+           Panel de Administración
+        </a>
+    </div>
+    {% endif %}
+
     <!-- Botón de logout -->
     <div class="mt-6">
         <a href="/logout" 

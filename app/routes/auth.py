@@ -12,8 +12,9 @@ from app.utils.auth import hash_password
 from jose import jwt
 from datetime import datetime, timedelta
 from app.utils.auth import verify_password, create_access_token
-from app.dependencies import get_db
+from app.dependencies.auth import get_db
 from urllib.parse import urlencode
+from app.dependencies.roles import required_roles
 
 load_dotenv()
 router = APIRouter(prefix="/auth", tags=["Auth"])
@@ -22,7 +23,10 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 30))
 
 @router.post("/signup")
 async def signup(
-    email: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)
+    email: str = Form(...),
+    password: str = Form(...),
+    role: str = Form("user"),
+    db: Session = Depends(get_db),
 ):
     # Verificar si el usuario ya existe
     db_user = db.query(User).filter(User.email == email).first()
@@ -34,7 +38,7 @@ async def signup(
     hashed_password = hash_password(
         password
     )  # Usar la variable 'password' del formulario
-    new_user = User(email=email, hashed_password=hashed_password)
+    new_user = User(email=email, hashed_password=hashed_password, role=role)
 
     db.add(new_user)
     db.commit()
@@ -57,3 +61,10 @@ async def login(
     response = RedirectResponse("/welcome", status_code=303)
     response.set_cookie(key="access_token", value=f"Bearer {access_token}")
     return response
+
+
+@router.get("/admin/users")
+async def list_users(
+    admin: User = Depends(required_roles(["admin"])), db: Session = Depends(get_db)
+):
+    return db.query(User).all()

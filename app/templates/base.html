@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Demo</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'primary': '#2563eb', // Azul más personalizado
+                }
+            }
+        }
+    }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md">
+        <!-- Mensajes Flash -->
+        {% if request.query_params.get('error') %}
+        <div class="mb-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700">
+            <p>{{ request.query_params.get('error') }}</p>
+        </div>
+        {% endif %}
+
+        {% if request.query_params.get('success') %}
+        <div class="mb-4 p-4 bg-green-100 border-l-4 border-green-500 text-green-700">
+            <p>{{ request.query_params.get('success') }}</p>
+        </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+

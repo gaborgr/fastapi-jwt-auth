@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-md w-full text-center">
+    <h1 class="text-3xl font-bold text-green-600 mb-4">¡Bienvenido, {{ user.email }}!</h1>
+    
+    <!-- Botón de logout -->
+    <div class="mt-6">
+        <a href="/logout" 
+           class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">
+           Cerrar sesión
+        </a>
+    </div>
+</div>
+{% endblock %}

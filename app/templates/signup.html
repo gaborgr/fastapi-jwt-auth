@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-md w-full">
+    <h1 class="text-2xl font-bold text-center mb-6 text-blue-600">Crear Cuenta</h1>
+    
+    <form action="/auth/signup" method="post" class="space-y-4">
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input 
+                type="email" 
+                name="email" 
+                id="email"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            >
+        </div>
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input 
+                type="password" 
+                name="password" 
+                id="password"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            >
+        </div>
+        <!-- Más campos según necesites -->
+        
+        <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"> <!-- Usa las mismas clases que login -->
+            Registrarse
+        </button>
+    </form>
+</div>
+{% endblock %}

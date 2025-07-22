@@ -20,7 +20,7 @@
     </script>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-md">
+    <div class="w-full {% block container_classes %}max-w-md{% endblock %}">
         <!-- Mensajes Flash -->
         {% if request.query_params.get('error') %}
         <div class="mb-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700">

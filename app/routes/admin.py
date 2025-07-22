@@ -54,3 +54,34 @@ async def update_user_role(
         },
     )
     return response
+
+
+@router.post("/users/{user_id}/delete")
+async def delete_user(
+    request: Request,
+    user_id: int,
+    current_user: User = Depends(required_roles(["admin"])),
+    db: Session = Depends(get_db),
+):
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+
+    # Validación para no eliminarse a sí mismo
+    if user.id == current_user.id:
+        raise HTTPException(status_code=400, detail="No puedes eliminarte a ti mismo")
+
+    db.delete(user)
+    db.commit()
+
+    # Redirige de vuelta al dashboard con mensaje de éxito
+    users = db.query(User).order_by(User.email).all()
+    return templates.TemplateResponse(
+        "admin/dashboard.html",
+        {
+            "request": request,
+            "current_user": current_user,
+            "users": users,
+            "success": f"Usuario {user.email} eliminado correctamente",
+        },
+    )

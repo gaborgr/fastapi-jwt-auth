@@ -3,6 +3,8 @@
 
 _Login:_ ![Imagen](./docs/images/login.PNG)
 
+_Admin Dashboard:_ ![Imagen](./docs/images/dashboard.PNG)
+
 ---
 
 ### 🚀 **Características principales**

@@ -1,9 +1,9 @@
 ## 🔐 **FastAPI Authentication System**
 *Sistema de autenticación JWT con roles*
 
-_Login:_ ![Imagen](./docs/images/login.PNG)
+## 🎬 Demo 
 
-_Admin Dashboard:_ ![Imagen](./docs/images/dashboard.PNG)
+[![Demo Jwt](docs/images/demo-auth.gif))
 
 ---
 

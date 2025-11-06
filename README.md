@@ -126,7 +126,3 @@ curl -X POST "http://localhost:8000/auth/signup" \
 
 ### 📜 **Licencia**  
 MIT License - Ver [LICENSE](LICENSE) para más detalles.
-
----
-
-> ✨ **Nota**: Este proyecto busca demostrar buenas prácticas en el desarrollo de APIs seguras con FastAPI. Ideal para portafolios técnicos.
